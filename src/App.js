@@ -1,22 +1,26 @@
-import logo from './logo.svg';
-import './App.css';
-
+import './index.css';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {faBars} from '@fortawesome/free-solid-svg-icons'
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+      <header className="header flex justify-between text-blue px-10 py-10">
+        <h1 className='uppercase text-2xl font-bold'>EasyLabs</h1>
+        <input type="checkbox" id="check" className="hidden" />
+        <label for="check" class="checkbtn">
+          <FontAwesomeIcon
+            icon={faBars}
+            className="hidden nav-btn"
+          />
+        </label>
+        <nav className='flex gap-16'>
+          <ul className='flex gap-10'>
+            <li><a href='#home' className='active'> Home</a></li>
+            <li><a href='#about' className=''> About</a></li>
+            <li><a href='#contact' className=''>Contact</a></li>
+          </ul>
+          <button className='border rounded-full p-4 text-white bg-main-blue font-bold text-xl h-10 flex items-center justify-center'>Get Started</button>
+        </nav>
       </header>
     </div>
   );

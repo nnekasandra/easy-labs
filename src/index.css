@@ -1,13 +1,30 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+.about{
+  background-image: url(/public/images/easyLabs-bg-cover.jpg);
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+@media(max-width:800px){
+  nav ul{
+    flex-direction: column;
+  }
+  nav{
+    display: block;
+    background-color: #caf0f8;
+    width: 100%;
+    position: fixed;
+    top: 80px;
+    left: 0;
+    transform: translateX(-100%);
+    transition: all 1s;
+  }
+  .nav-btn{
+    display: block;
+  }
+  #check:checked ~ nav{
+    transform: translateX(0);
+  }
 }
