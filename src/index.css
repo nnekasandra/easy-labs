@@ -2,10 +2,26 @@
 @tailwind components;
 @tailwind utilities;
 
+body{
+  color: #021c1e;
+}
 .about{
   background-image: url(/public/images/easyLabs-bg-cover.jpg);
   background-size: cover;
   background-repeat: no-repeat;
+}
+.number{
+  top: -22px;
+}
+.step-box{
+   box-shadow: 5px 8px 16px 0px rgba(0, 0, 0, 0.5);
+}
+label{
+  display: block;
+  font-size: 20px;
+}
+.cta{
+  transition: all 1s;
 }
 @media(max-width:800px){
   nav ul{
@@ -20,11 +36,25 @@
     left: 0;
     transform: translateX(-100%);
     transition: all 1s;
+    height: 50vh;
+    padding-left: 40px;
   }
   .nav-btn{
     display: block;
+    cursor: pointer;
+    font-size: 30px;
+  }
+  .btn{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+    text-align: center;
   }
   #check:checked ~ nav{
     transform: translateX(0);
+  }
+  .steps{
+    flex-direction: column;
   }
 }
