@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 const Home = () => {
   return (
     <div>
-      <section className="about text-white px-20 py-10">
+      <section className="about text-white px-20 py-10" id="about">
         <h2 className="lg:text-6xl text-4xl py-10 ">
           Carry Out Lab Experiments Seamlessly
         </h2>

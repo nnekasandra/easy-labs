@@ -1,6 +1,5 @@
-import { Routes, Route, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import SelectBtn from "../components/button";
-import Practical from "./practical";
 import "../index.css";
 const Start = () => {
     return (
@@ -10,10 +9,11 @@ const Start = () => {
         </h2>
         <div className="grid lg:grid-cols-2 px-20 gap-5">
           <Link to="/get-started/practical" className="block">
-            <SelectBtn title="Animals Used for Experimental Pharmacology" />
+            <SelectBtn title="Dose Responsive Curve of Acetylcholine on Rectus
+          Abdominal Muscle of Frog" />
           </Link>
           <Link to="/get-started/practical" className="block">
-            <SelectBtn title="Effect of AcetylCholine" className="block" />
+            <SelectBtn title="Animals used in practical" className="block" />
           </Link>
         </div>
       </section>

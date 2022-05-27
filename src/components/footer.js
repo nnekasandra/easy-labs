@@ -5,7 +5,7 @@ const Footer = () => {
       <p className="text-center">
         Made with Love by{" "}
         <a
-          href="twitter.com/nnekasandra_"
+          href="https://twitter.com/nnekasandra_"
           target={"_blank"}
           className="border-b-2 border-b-main-blue"
         >
