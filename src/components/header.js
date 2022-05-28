@@ -1,11 +1,10 @@
-// import {Link} from 're'
 import "../index.css";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars } from "@fortawesome/free-solid-svg-icons";
 const Header = () => {
     return (
-      <header className="header flex justify-between text-blue px-10 py-10">
+      <header className="header flex justify-between text-blue px-10 py-5 sticky top-0">
         <h1 className="uppercase text-2xl font-bold">EasyLabs</h1>
         <input type="checkbox" id="check" className="hidden" />
         <label for="check" class="checkbtn">

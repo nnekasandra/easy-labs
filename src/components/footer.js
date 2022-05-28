@@ -7,6 +7,7 @@ const Footer = () => {
         <a
           href="https://twitter.com/nnekasandra_"
           target={"_blank"}
+          rel="noopener noreferrer"
           className="border-b-2 border-b-main-blue"
         >
           Nneka

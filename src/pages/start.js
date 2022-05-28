@@ -8,13 +8,18 @@ const Start = () => {
           Select the Practical You Want to Carry Out
         </h2>
         <div className="grid lg:grid-cols-2 px-20 gap-5">
-          <Link to="/get-started/practical" className="block">
-            <SelectBtn title="Dose Responsive Curve of Acetylcholine on Rectus
-          Abdominal Muscle of Frog" />
+          <Link to="/get-started/practical-1" className="block">
+            <SelectBtn
+              title="Dose Responsive Curve of Acetylcholine on Rectus
+          Abdominal Muscle of Frog"
+            />
           </Link>
-          <Link to="/get-started/practical" className="block">
-            <SelectBtn title="Animals used in practical" className="block" />
-          </Link>
+          <Link to="/get-started/practical-2">
+            <SelectBtn
+              title="Animals used in practical"
+              className="w-full h-20"
+            />
+          </Link> 
         </div>
       </section>
     );

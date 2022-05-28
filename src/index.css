@@ -26,6 +26,12 @@ label{
 .cta{
   transition: all 1s;
 }
+header{
+  box-shadow: rgba(0, 0, 0, 0.05) 0px 10px 15px;
+  z-index: 1000;
+  background-color: rgb(255, 255, 255);
+}
+
 @media(max-width:800px){
   nav ul{
     flex-direction: column;

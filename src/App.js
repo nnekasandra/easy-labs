@@ -5,8 +5,7 @@ import Header from "./components/header";
 import Home from "./components/home";
 import Practical from "./pages/practical";
 import Start from "./pages/start";
-const App = () => {
-  
+const App = () => { 
   return (
     <BrowserRouter>
       <Header />

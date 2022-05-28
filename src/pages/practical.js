@@ -1,5 +1,6 @@
 import "./style.css";
 import Table from "../components/table";
+import { Results } from "../components/tableedit";
 const Practical = () => {
   return (
     <section className="lg:px-20 px-10">
@@ -186,9 +187,13 @@ const Practical = () => {
         <h2 className="text-blue underline text-center text-2xl font-bold">
           Result Presentation
         </h2>
-        <p>Standard Example</p>
         <div>
-          <Table/>
+          <p>Standard Example</p>
+          <Table />
+        </div>
+        <div>
+          <p>Observed Result</p>
+          <Results />
         </div>
       </section>
     </section>

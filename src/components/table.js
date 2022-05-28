@@ -1,3 +1,4 @@
+import "./styles.css";
 const data = [
   {
     serialNum: 1,
@@ -83,10 +84,10 @@ const data = [
 
 function Table() {
   return (
-    <div className="table">
+    <div className="table py-10">
       <table>
         <thead>
-          <tr className="p-3 bg-black text-white">
+          <tr className="">
             <th>S/N</th>
             <th>Drug Name</th>
             <th>Drug Concentration (µg/mL)</th>
@@ -97,16 +98,14 @@ function Table() {
         </thead>
         {data.map((val, key) => {
           return (
-            <tbody>
-              <tr key={key}>
-                <td>{val.serialNum}</td>
-                <td>{val.drugName}</td>
-                <td>{val.drugConc}</td>
-                <td>{val.drugDose}</td>
-                <td>{val.response}</td>
-                <td>{val.responsePercent}</td>
-              </tr>
-            </tbody>
+            <tr key={key}>
+              <td>{val.serialNum}</td>
+              <td>{val.drugName}</td>
+              <td>{val.drugConc}</td>
+              <td>{val.drugDose}</td>
+              <td>{val.response}</td>
+              <td>{val.responsePercent}</td>
+            </tr>
           );
         })}
       </table>
