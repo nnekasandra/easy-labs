@@ -1,7 +1,89 @@
 import "./styles.css";
 export const Results = () => {
+  const values = [
+    {
+      serialNum: 1,
+      drugName: "Acetylcholine",
+      drugConc: 1,
+      drugDose: <input type="number" className="dose" name="dose" width={'10px'} />,
+      response: <input type="number" className="response" name="response" width={"20px"} />,
+      responsePercent: <input type="number" className="responsep" name="responsep" width={"20px"} />
+    },
+    {
+      serialNum: 2,
+      drugName: "Acetylcholine",
+      drugConc: 1,
+      drugDose: <input type="number" className="dose" name="dose" />,
+      response: <input type="number" className="response" name="response" />,
+      responsePercent: <input type="number" className="responsep" name="responsep" />
+    },
+    {
+      serialNum: 3,
+      drugName: "Acetylcholine",
+      drugConc: 1,
+      drugDose: <input type="number" className="dose" name="dose" />,
+      response: <input type="number" className="response" name="response" />,
+      responsePercent: <input type="number" className="responsep" name="responsep" />
+    },
+    {
+      serialNum: 4,
+      drugName: "Acetylcholine",
+      drugConc: 1,
+      drugDose: <input type="number" className="dose" name="dose" />,
+      response: <input type="number" className="response" name="response" />,
+      responsePercent: <input type="number" className="responsep" name="responsep" />
+    },
+    {
+      serialNum: 5,
+      drugName: "Acetylcholine",
+      drugConc: 10,
+      drugDose: <input type="number" className="dose" name="dose" />,
+      response: <input type="number" className="response" name="response" />,
+      responsePercent: <input type="number" className="responsep" name="responsep" />
+    },
+    {
+      serialNum: 6,
+      drugName: "Acetylcholine",
+      drugConc: 10,
+      drugDose: <input type="number" className="dose" name="dose" />,
+      response: <input type="number" className="response" name="response" />,
+      responsePercent: <input type="number" className="responsep" name="responsep" />
+    },
+    {
+      serialNum: 7,
+      drugName: "Acetylcholine",
+      drugConc: 10,
+      drugDose: <input type="number" className="dose" name="dose" />,
+      response: <input type="number" className="response" name="response" />,
+      responsePercent: <input type="number" className="responsep" name="responsep" />
+    },
+    {
+      serialNum: 8,
+      drugName: "Acetylcholine",
+      drugConc: 100,
+      drugDose: <input type="number" className="dose" name="dose" />,
+      response: <input type="number" className="response" name="response" />,
+      responsePercent: <input type="number" className="responsep" name="responsep" />
+    },
+    {
+      serialNum: 9,
+      drugName: "Acetylcholine",
+      drugConc: 100,
+      drugDose: <input type="number" className="dose" name="dose" />,
+      response: <input type="number" className="response" name="response" />,
+      responsePercent: <input type="number" className="responsep" name="responsep" />
+    },
+    {
+      serialNum: 10,
+      drugName: "Acetylcholine",
+      drugConc: 100,
+      drugDose: <input type="number" className="dose" name="dose" />,
+      response: <input type="number" className="response" name="response" />,
+      responsePercent: <input type="number" className="responsep" name="responsep" />
+    },
+  ];
   return (
-    <div className="table">
+    <div className="table py-10"  style={{'overflow-x': 'auto'}}>
       <table>
         <thead>
           <tr className="">
@@ -13,26 +95,18 @@ export const Results = () => {
             <th>Response %</th>
           </tr>
         </thead>
-        <tr>
-          <td>
-            <input type={"text"} id="input" name="input" />
-          </td>
-          <td>
-            <input type={"text"} id="input2" name="input" />
-          </td>
-          <td>
-            <input type={"text"} id="input3" name="input" />
-          </td>
-          <td>
-            <input type={"text"} id="input4" name="input" />
-          </td>
-          <td>
-            <input type={"text"} id="input5" name="input" />
-          </td>
-          <td>
-            <input type={"text"} id="input6" name="input" />
-          </td>
-        </tr>
+        {values.map((elem, index)=>{
+          return(
+            <tr index={index}>
+              <td>{elem.serialNum}</td>
+              <td>{elem.drugName}</td>
+              <td>{elem.drugConc}</td>
+              <td>{elem.drugDose}</td>
+              <td>{elem.response}</td>
+              <td>{elem.responsePercent}</td>
+            </tr>
+          );
+        })}
       </table>
     </div>
   );

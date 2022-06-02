@@ -3,12 +3,12 @@ import Table from "../components/table";
 import { Results } from "../components/tableedit";
 const Practical = () => {
   return (
-    <section className="lg:px-20 px-10">
+    <section className="lg:px-24 px-10">
       <div className="py-5">
         <h2 className="text-blue underline text-center text-2xl font-bold">
           Title
         </h2>
-        <p className="lg:text-3xl text-2xl text-center">
+        <p className="text-2xl text-center pt-5">
           Animals Used for Experimental Pharmacology
         </p>
       </div>
@@ -16,16 +16,16 @@ const Practical = () => {
         <h2 className="font-bold text-blue underline text-center text-2xl">
           Aim
         </h2>
-        <p className="lg:text-3xl text-2xl text-center">
+        <p className="text-2xl text-center pt-5">
           To Study The Dose Responsive Curve of Acetylcholine on Rectus
           Abdominal Muscle of Frog
         </p>
       </div>
       <section>
         <h2 className="text-blue underline text-center text-2xl font-bold">
-          THEORY
+          Theory
         </h2>
-        <p className="lg:text-3xl text-2xl text-center">
+        <p className="text-2xl text-center pt-5">
           Graded Dose Response Relationship Curve of Acetylcholine on Frog
           Rectus Muscle.
         </p>
@@ -59,7 +59,9 @@ const Practical = () => {
         </p>
       </section>
       <section>
-        <h3 className="font-bold text-2xl my-5">Apparatus</h3>
+        <h3 className="text-blue underline text-center text-2xl font-bold my-5">
+          Apparatus
+        </h3>
         <ul className="apparatus">
           <li>Reservoir</li>
           <li>Tubing</li>
@@ -110,7 +112,7 @@ const Practical = () => {
           </figure>
         </div>
         <div className="py-5">
-          <h2 className="text-blue underline text-center text-2xl font-bold">
+          <h2 className="text-blue underline text-center text-2xl font-bold my-5">
             Experimental Condition
           </h2>
           <p className="text-xl py-5">
@@ -131,10 +133,10 @@ const Practical = () => {
         </div>
       </section>
       <section>
-        <h2 className="text-blue underline text-center text-2xl font-bold">
+        <h2 className="text-blue underline text-center text-2xl font-bold my-5">
           Procedures
         </h2>
-        <ol>
+        <ol className="ordered">
           <li>
             The assembly is set up and the arrangements are made for the above
             mentioned condition
@@ -161,7 +163,7 @@ const Practical = () => {
             period the PSS is changed after every ten min. once the tissue is
             stabilize, graded doses of Ach are added to at defined time period
             of interval for obtain contractile responses.
-            <ol>
+            <ol className="sub-list">
               <li>00 sec: Start the drum and record a base line for 30 sec.</li>
               <li>
                 30 sec: Add the first dose of drug in organ bath and take the
@@ -184,7 +186,7 @@ const Practical = () => {
         </ol>
       </section>
       <section>
-        <h2 className="text-blue underline text-center text-2xl font-bold">
+        <h2 className="text-blue underline text-center text-2xl font-bold my-5">
           Result Presentation
         </h2>
         <div>
@@ -195,6 +197,30 @@ const Practical = () => {
           <p>Observed Result</p>
           <Results />
         </div>
+      </section>
+      <section>
+        <h2 className="text-blue underline text-center text-2xl font-bold my-5">
+          Result Discussion
+        </h2>
+        <p>Plot dose Vs Response It would return a parabola curve</p>
+        <p>Plot Log Dose Vs Response curve which returns a Sigmoid line</p>
+      </section>
+      <section>
+        <h2 className="text-blue underline text-center text-2xl font-bold my-5">
+          Conclusion
+        </h2>
+      </section>
+      <section>
+        <h2 className="text-blue underline text-center text-2xl font-bold my-5">
+          Precautions
+        </h2>
+        <ol>
+          <li>Ensure to accurately measure drug doses.</li>
+          <li>Ensure frog rectus is properly aerated.</li>
+          <li>Make sure to avoid paralax error while measuring response</li>
+          <li>Ensure to properly set up organ bath.</li>
+          <li>Ensure to take timely readings.</li>
+        </ol>
       </section>
     </section>
   );

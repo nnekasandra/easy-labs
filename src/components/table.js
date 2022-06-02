@@ -84,7 +84,7 @@ const data = [
 
 function Table() {
   return (
-    <div className="table py-10">
+    <div className="table py-10" style={{'overflow-x': 'auto'}}>
       <table>
         <thead>
           <tr className="">
@@ -112,5 +112,4 @@ function Table() {
     </div>
   );
 }
-
 export default Table;

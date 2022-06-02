@@ -12,18 +12,16 @@ const Header = () => {
         </label>
         <nav className="flex gap-16">
           <ul className="flex gap-10">
-            <li>
-              <Link to="/" className="active">
-                Home
-              </Link>
+            <li className="active">
+              <Link to="/">Home</Link>
             </li>
             <li id="about-link">
-              <a href="#about" className="">
+              <a href="#about">
                 About
               </a>
             </li>
             <li id="contact-link">
-              <a href="#contact" className="">
+              <a href="#contact">
                 Contact
               </a>
             </li>

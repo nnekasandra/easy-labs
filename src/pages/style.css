@@ -10,10 +10,14 @@ figcaption{
     font-size: 20px;
     text-align: center;
 }
-ol{
-    list-style-type:upper-alpha;
+.ordered{
+    list-style-type: decimal;
 }
-ol li{
+.ordered li{
     font-size: 20px;
     margin-bottom: 8px;
+}
+.sub-list{
+    list-style-type: circle;
+    padding-left: 5em;
 }
