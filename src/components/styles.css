@@ -13,3 +13,29 @@ td {
 .table{
   display: flex;
 }
+tr{
+  font-size: 18px;
+}
+td ul li,
+td ol li,
+td p,
+.precaution ol li{
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+.table::-webkit-scrollbar {
+  width: 12px; 
+}
+
+.table::-webkit-scrollbar-track {
+  background: #ddd;
+}
+
+.table::-webkit-scrollbar-thumb {
+  background-color: #00b4d8;   
+  border-radius: 10px;
+  border: 3px solid #90e0ef;
+}
+.precaution ol{
+  list-style: outside;
+}

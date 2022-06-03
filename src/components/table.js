@@ -87,7 +87,7 @@ function Table() {
     <div className="table py-10" style={{'overflow-x': 'auto'}}>
       <table>
         <thead>
-          <tr className="">
+          <tr>
             <th>S/N</th>
             <th>Drug Name</th>
             <th>Drug Concentration (µg/mL)</th>

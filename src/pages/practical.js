@@ -220,6 +220,9 @@ const Practical = () => {
           <li>Make sure to avoid paralax error while measuring response</li>
           <li>Ensure to properly set up organ bath.</li>
           <li>Ensure to take timely readings.</li>
+          <li>A steady Oxygen should be passed in the bath to avoid tissue destruction.</li>
+          <li>If the desired response is not obtained with 0.1ml of Ach then the dose should be increased.</li>
+          <li>The number of washing and interval between them should be kept constant.</li>
         </ol>
       </section>
     </section>
