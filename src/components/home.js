@@ -2,7 +2,12 @@ import "../index.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAnglesRight } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
+import { useForm, ValidationError } from "@formspree/react";
 const Home = () => {
+  const [state, handleSubmit] = useForm("xlezalvv");
+  if (state.succeeded) {
+    return <p>Your Message was well received!</p>;
+  }
   return (
     <div>
       <section className="about text-white px-20 py-10" id="about">
@@ -81,12 +86,12 @@ const Home = () => {
               Select the Practical You Want to Carry Out
             </p>
           </div>
-          <div className="border rounded-xl step-box p-10 relative flex items-center justify-center h-44">
+          <div className="border rounded-xl step-box relative flex items-center justify-center h-44">
             <p className="h-10 w-10 border rounded-full flex items-center justify-center text-xl absolute number bg-blue text-white text-lg font-bold">
               3
             </p>
-            <p className="text-xl text-blue text-center">
-              Follow the tools and Procedures Outlined and you're good to go.
+            <p className="text-xl text-blue text-center py-20 px-10">
+              Follow Procedures and Obtain Results
             </p>
           </div>
         </div>
@@ -110,25 +115,40 @@ const Home = () => {
           <h3 className="text-3xl font-bold text-main-blue py-5 ">
             For Collaborations and Enquiries you can Reach Out Via this Form
           </h3>
-          <form action="https://formspree.io/f/xlezalvv" method="POST">
+          <form onSubmit={handleSubmit}>
             <label for="name">Name</label>
             <input
               type={"text"}
               id="name"
               className="border p-4 w-full block my-3"
-            ></input>
+            />
+            <ValidationError prefix="Name" field="name" errors={state.errors} />
             <label for="email">Email</label>
             <input
               type={"email"}
               id="email"
               className="border p-4 w-full block my-3"
-            ></input>
+            />
+            <ValidationError
+              prefix="Email"
+              field="email"
+              errors={state.errors}
+            />
             <label for="Message">Your Message</label>
             <textarea
               placeholder="Enter Your Message..."
               className="border p-4 w-full block my-3"
             ></textarea>
-            <button className="bg-main-blue hover:bg-blue text-white font-bold border rounded p-5 my-6 text-xl">
+            <ValidationError
+              prefix="Message"
+              field="message"
+              errors={state.errors}
+            />
+            <button
+              type="submit"
+              disabled={state.submitting}
+              className="bg-main-blue hover:bg-blue text-white font-bold border rounded p-5 my-6 text-xl"
+            >
               Send Message
             </button>
           </form>

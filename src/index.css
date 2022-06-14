@@ -44,7 +44,7 @@ header{
     top: 70px;
     left: 0;
     transform: translateX(-100%);
-    transition: all 1s;
+    transition: all .5s;
     height: 50vh;
     padding-left: 40px;
   }
@@ -63,10 +63,14 @@ header{
   .active{
     padding-top: 3em;
   }
+  .clickbtn{
+    transform: translateX(100%);
+  }
   #check:checked ~ nav{
     transform: translateX(0);
   }
   .steps{
     flex-direction: column;
   }
+  
 }

@@ -131,6 +131,18 @@ const Practical = () => {
           </p>
           <p className="text-xl py-5">Molecular weight of drug : 181.78</p>
         </div>
+        <div className="flex items-center justify-center py-10 flex-col">
+          <iframe
+            width="50%"
+            height="400"
+            src="https://www.youtube.com/embed/4jUw6mkYoTU"
+            title="YouTube video player"
+            frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen
+          ></iframe>
+          <p className="text-2xl py-5">Video Representation on how to set up an Organ Bath</p>
+        </div>
       </section>
       <section>
         <h2 className="text-blue underline text-center text-2xl font-bold my-5">
@@ -189,12 +201,18 @@ const Practical = () => {
         <h2 className="text-blue underline text-center text-2xl font-bold my-5">
           Result Presentation
         </h2>
+        <img
+          src="/images/graph.jpg"
+          alt="graphical representation of readings"
+          className="py-10 w-full"
+        />
+        <p className="text-xl py-5">From the graph above, the following readings were tabulated.</p>
         <div>
-          <p>Standard Example</p>
+          <p className="text-xl font-bold">Standard Example</p>
           <Table />
         </div>
         <div>
-          <p>Observed Result</p>
+          <p className="text-xl font-bold">Observed Result</p>
           <Results />
         </div>
       </section>
@@ -209,20 +227,34 @@ const Practical = () => {
         <h2 className="text-blue underline text-center text-2xl font-bold my-5">
           Conclusion
         </h2>
+        <p>
+          Nicotinic Receptors are present in the skeletal muscle where
+          Acetylcholine produces contraction of the muscle through the
+          stimulation of nicotinic receptors.
+        </p>
       </section>
-      <section>
+      <section className="precaution">
         <h2 className="text-blue underline text-center text-2xl font-bold my-5">
           Precautions
         </h2>
-        <ol>
+        <ol className="text-xl py-10">
           <li>Ensure to accurately measure drug doses.</li>
           <li>Ensure frog rectus is properly aerated.</li>
           <li>Make sure to avoid paralax error while measuring response</li>
           <li>Ensure to properly set up organ bath.</li>
           <li>Ensure to take timely readings.</li>
-          <li>A steady Oxygen should be passed in the bath to avoid tissue destruction.</li>
-          <li>If the desired response is not obtained with 0.1ml of Ach then the dose should be increased.</li>
-          <li>The number of washing and interval between them should be kept constant.</li>
+          <li>
+            A steady Oxygen should be passed in the bath to avoid tissue
+            destruction.
+          </li>
+          <li>
+            If the desired response is not obtained with 0.1ml of Ach then the
+            dose should be increased.
+          </li>
+          <li>
+            The number of washing and interval between them should be kept
+            constant.
+          </li>
         </ol>
       </section>
     </section>

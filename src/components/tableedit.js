@@ -5,15 +5,17 @@ export const Results = () => {
       serialNum: 1,
       drugName: "Acetylcholine",
       drugConc: 1,
-      drugDose: <input type="number" className="dose" name="dose" width={'10px'} />,
-      response: <input type="number" className="response" name="response" width={"20px"} />,
-      responsePercent: <input type="number" className="responsep" name="responsep" width={"20px"} />
+      drugDose: <input type="number" className="dose" name="dose" />,
+      logDose: <input type="number" className="logdose" name="logdose" />,
+      response: <input type="number" className="response" name="response" />,
+      responsePercent: <input type="number" className="responsep" name="responsep" />
     },
     {
       serialNum: 2,
       drugName: "Acetylcholine",
       drugConc: 1,
       drugDose: <input type="number" className="dose" name="dose" />,
+      logDose: <input type="number" className="logdose" name="logdose" />,
       response: <input type="number" className="response" name="response" />,
       responsePercent: <input type="number" className="responsep" name="responsep" />
     },
@@ -22,6 +24,7 @@ export const Results = () => {
       drugName: "Acetylcholine",
       drugConc: 1,
       drugDose: <input type="number" className="dose" name="dose" />,
+      logDose: <input type="number" className="logdose" name="logdose" />,
       response: <input type="number" className="response" name="response" />,
       responsePercent: <input type="number" className="responsep" name="responsep" />
     },
@@ -30,6 +33,7 @@ export const Results = () => {
       drugName: "Acetylcholine",
       drugConc: 1,
       drugDose: <input type="number" className="dose" name="dose" />,
+      logDose: <input type="number" className="logdose" name="logdose" />,
       response: <input type="number" className="response" name="response" />,
       responsePercent: <input type="number" className="responsep" name="responsep" />
     },
@@ -38,6 +42,7 @@ export const Results = () => {
       drugName: "Acetylcholine",
       drugConc: 10,
       drugDose: <input type="number" className="dose" name="dose" />,
+      logDose: <input type="number" className="logdose" name="logdose" />,
       response: <input type="number" className="response" name="response" />,
       responsePercent: <input type="number" className="responsep" name="responsep" />
     },
@@ -46,6 +51,7 @@ export const Results = () => {
       drugName: "Acetylcholine",
       drugConc: 10,
       drugDose: <input type="number" className="dose" name="dose" />,
+      logDose: <input type="number" className="logdose" name="logdose" />,
       response: <input type="number" className="response" name="response" />,
       responsePercent: <input type="number" className="responsep" name="responsep" />
     },
@@ -54,6 +60,7 @@ export const Results = () => {
       drugName: "Acetylcholine",
       drugConc: 10,
       drugDose: <input type="number" className="dose" name="dose" />,
+      logDose: <input type="number" className="logdose" name="logdose" />,
       response: <input type="number" className="response" name="response" />,
       responsePercent: <input type="number" className="responsep" name="responsep" />
     },
@@ -62,6 +69,7 @@ export const Results = () => {
       drugName: "Acetylcholine",
       drugConc: 100,
       drugDose: <input type="number" className="dose" name="dose" />,
+      logDose: <input type="number" className="logdose" name="logdose" />,
       response: <input type="number" className="response" name="response" />,
       responsePercent: <input type="number" className="responsep" name="responsep" />
     },
@@ -70,6 +78,7 @@ export const Results = () => {
       drugName: "Acetylcholine",
       drugConc: 100,
       drugDose: <input type="number" className="dose" name="dose" />,
+      logDose: <input type="number" className="logdose" name="logdose" />,
       response: <input type="number" className="response" name="response" />,
       responsePercent: <input type="number" className="responsep" name="responsep" />
     },
@@ -78,6 +87,7 @@ export const Results = () => {
       drugName: "Acetylcholine",
       drugConc: 100,
       drugDose: <input type="number" className="dose" name="dose" />,
+      logDose: <input type="number" className="logdose" name="logdose" />,
       response: <input type="number" className="response" name="response" />,
       responsePercent: <input type="number" className="responsep" name="responsep" />
     },
@@ -91,6 +101,7 @@ export const Results = () => {
             <th>Drug Name</th>
             <th>Drug Concentration (µg/mL)</th>
             <th>Drug Dose (mL)</th>
+            <th>Log Dose</th>
             <th>Response (mm)</th>
             <th>Response %</th>
           </tr>
@@ -102,6 +113,7 @@ export const Results = () => {
               <td>{elem.drugName}</td>
               <td>{elem.drugConc}</td>
               <td>{elem.drugDose}</td>
+              <td>{elem.logDose}</td>
               <td>{elem.response}</td>
               <td>{elem.responsePercent}</td>
             </tr>
