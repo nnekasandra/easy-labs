@@ -1,0 +1,63 @@
+figure img{
+  max-width: 100%;
+}
+.apparatus li{
+    margin-bottom: 8px;
+    text-transform: capitalize;
+    font-size: 20px;
+}
+figcaption{
+    font-size: 20px;
+    text-align: center;
+}
+.ordered{
+    list-style-type: decimal;
+}
+.ordered li{
+    font-size: 20px;
+    margin-bottom: 8px;
+}
+.sub-list{
+    list-style-type: circle;
+    padding-left: 3em;
+}
+body {
+    --color-primary: #009579;
+    --color-primary-dark: #007f67;
+    --color-secondary: #252c6a;
+    --color-error: #cc3333;
+    --color-success: #4bb544;
+    --border-radius: 4px;
+}
+.forms{
+    box-shadow: 0 0 40px rgba(0, 0, 0, 0.2);
+}
+.success-message {
+    color: var(--color-success);
+}
+.error-message{
+    color: var(--color-error);
+}
+.form-input-error {
+    color: var(--color-error);
+    border-color: var(--color-error);
+}
+/* 
+.form__message--success {
+    color: var(--color-success);
+}
+
+.form__message--error {
+    color: var(--color-error);
+} 
+.form__input--error {
+    color: var(--color-error);
+    border-color: var(--color-error);
+}
+
+.form__input-error-message {
+    margin-top: 0.5rem;
+    font-size: 0.85rem;
+    color: var(--color-error);
+}
+*/
