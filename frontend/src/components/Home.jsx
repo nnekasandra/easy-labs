@@ -3,6 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAnglesRight } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
 import { useForm, ValidationError } from "@formspree/react";
+import LoginButton from "./LoginButton";
 const Home = () => {
   const [state, handleSubmit] = useForm("xlezalvv");
   if (state.succeeded) {
@@ -98,6 +99,7 @@ const Home = () => {
         <div className="flex justify-center mt-10">
           <button className="border rounded-full p-6 hover:p-7 cta text-white bg-main-blue hover:bg-blue font-bold text-2xl h-10 flex items-center justify-center">
             <Link to="/get-started">Get Started Now</Link>
+            {/* <LoginButton/> */}
           </button>
         </div>
       </section>

@@ -1,9 +1,15 @@
 import "./style.css";
 import Table from "../components/table";
 import { Results } from "../components/tableedit";
+import LogoutButton from "../components/LogoutButton";
+import Profile from "../components/Profile";
 const FirstPractical = () => {
   return (
     <section className="lg:px-24 px-10">
+      <div>
+        <h2>Welcome <Profile/></h2>
+        <LogoutButton/>
+      </div>
       <div className="py-5">
         <h2 className="text-blue underline text-center text-2xl font-bold">
           Title

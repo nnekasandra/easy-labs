@@ -4,18 +4,16 @@ import Header from "./components/Header";
 import Home from "./components/Home";
 import FirstPractical from "./pages/FirstPractical";
 import { SignIn } from "./pages/SignIn";
-import { SignUp } from "./pages/SignUp";
+// import LogoutButton from "./components/LogoutButton";
+import LoginButton from "./components/LoginButton";
 const App = () => { 
   return (
     <BrowserRouter>
       <Header />
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="get-started">
-          <Route index element={<FirstPractical />} />
-          <Route path="sign-in" element={<SignIn />} />
-          <Route path="sign-up" element={<SignUp />} />
-        </Route>
+        <Route path="get-started" element={<LoginButton />} />
+        <Route path="practicals" element={<FirstPractical />} />
       </Routes>
       <Footer />
     </BrowserRouter>
