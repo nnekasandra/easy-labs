@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars } from "@fortawesome/free-solid-svg-icons";
 import { useRef } from "react";
+import LoginButton from "./LoginButton";
 const Header = () => {
   const btnRef = useRef();
   function cancel(){
@@ -23,16 +24,14 @@ const Header = () => {
             <Link to="/">Home</Link>
           </li>
           <li id="about-link">
-            <a href="#about">About</a>
+            <a href="http://127.0.0.1:3000/#about">About</a>
           </li>
           <li id="contact-link">
-            <a href="#contact">Contact</a>
+            <a href="http://127.0.0.1:3000/#contact">Contact</a>
           </li>
           <div className="btn" onClick={() => cancel()}>
-            <button
-              className="border rounded-full p-4 hover:p-5 text-white bg-main-blue hover:bg-blue font-bold text-xl h-10 flex items-center justify-center cta"
-            >
-              <Link to="/get-started">Get Started Now</Link>
+            <button className="border rounded-full p-4 hover:p-5 text-white bg-main-blue hover:bg-blue font-bold text-xl h-10 flex items-center justify-center cta">
+              <LoginButton/>
             </button>
           </div>
         </ul>

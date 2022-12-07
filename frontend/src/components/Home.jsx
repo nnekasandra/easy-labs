@@ -29,8 +29,8 @@ const Home = () => {
             About EasyLabs
           </h2>
           <p className="text-3xl font-bold text-main-blue py-5">
-            EasyLabs helps you easily carry out laboratory processes with or
-            without help. With concrete result analytics.
+            EasyLabs helps you easily carry out laboratory processes faster with
+            concrete result analytics.
           </p>
           <div className="flex gap-2">
             <FontAwesomeIcon
@@ -60,8 +60,8 @@ const Home = () => {
               className="h-4 w-4 p-2 mt-1 border rounded-full flex items-center justify-center bg-lighter-blue"
             />
             <p className="text-lg leading-8">
-              Obtain Results and Practical Observations. Results can be
-              evaluated via the Platform
+              Obtain Accurate Results and Practical Observations. Results can be
+              evaluated and Analysed via the Platform
             </p>
           </div>
         </div>
@@ -98,8 +98,7 @@ const Home = () => {
         </div>
         <div className="flex justify-center mt-10">
           <button className="border rounded-full p-6 hover:p-7 cta text-white bg-main-blue hover:bg-blue font-bold text-2xl h-10 flex items-center justify-center">
-            <Link to="/get-started">Get Started Now</Link>
-            {/* <LoginButton/> */}
+            <LoginButton />
           </button>
         </div>
       </section>

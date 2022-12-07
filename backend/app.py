@@ -28,5 +28,8 @@ def create_app(test_config=None):
     @app.route('/', methods=['GET'] )
     def home_page():
         return 'Hello world'
+    @app.route('/practicals', methods=['GET'] )
+    def home_page():
+        return 'Get and list all available practicals'
 
     return app    
