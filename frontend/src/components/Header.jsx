@@ -15,7 +15,7 @@ const Header = () => {
         <Link to="/"> EasyLabs </Link>
       </h1>
       <input type="checkbox" id="check" className="hidden" />
-      <label for="check" class="checkbtn">
+      <label htmlFor="check" className="checkbtn">
         <FontAwesomeIcon icon={faBars} className="hidden nav-btn" />
       </label>
       <nav className="flex gap-16" id="nav" ref={btnRef}>
@@ -30,9 +30,9 @@ const Header = () => {
             <a href="http://127.0.0.1:3000/#contact">Contact</a>
           </li>
           <div className="btn" onClick={() => cancel()}>
-            <button className="border rounded-full p-4 hover:p-5 text-white bg-main-blue hover:bg-blue font-bold text-xl h-10 flex items-center justify-center cta">
-              <LoginButton/>
-            </button>
+            <div className="border rounded-full p-4 hover:p-5 text-white bg-main-blue hover:bg-blue font-bold text-xl h-10 flex items-center justify-center cta">
+              <LoginButton name="Get Started"/>
+            </div>
           </div>
         </ul>
       </nav>

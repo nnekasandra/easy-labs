@@ -98,7 +98,7 @@ const Home = () => {
         </div>
         <div className="flex justify-center mt-10">
           <button className="border rounded-full p-6 hover:p-7 cta text-white bg-main-blue hover:bg-blue font-bold text-2xl h-10 flex items-center justify-center">
-            <LoginButton />
+            <LoginButton name="Get Started" />
           </button>
         </div>
       </section>
