@@ -1,10 +1,23 @@
 import { ImageDisplay } from "../components/ImageDisplay";
+import { Link } from "react-router-dom";
+import Table from "../components/table";
 const DrugDoseResponse = () => {
   return (
     <section className="p-10">
       <h1 className="text-center text-3xl">
         Experiment to Determine the Dose-Response Curve in Drugs
       </h1>
+      <p>
+        This Page serves as guidline to perform experiment to start recording,
+        click below{" "}
+      </p>
+      <div>
+        <Link to="/practicals/dose-response/record">
+          <button className="bg-lightest border rounded-lg p-3 text-lg font-bold">
+            Record Experiment
+          </button>
+        </Link>
+      </div>
       <div className="p-16">
         <div className="py-5 border-b">
           <h3 className="text-2xl font-bold">Title</h3>
@@ -166,10 +179,34 @@ const DrugDoseResponse = () => {
             </ol>
           </div>
         </div>
-        <div className="py-5 borfer-b">
+        <div className="py-5 border-b">
+          <h3 className="text-2xl font-bold">Result Presentation</h3>
+          <div>
+            <p className="text-xl font-bold">Standard Example</p>
+            <Table />
+          </div>
+        </div>
+        <div className="py-5 border-b">
+          <h2 className="text-2xl font-bold">Result Discussion</h2>
+          <p className="text-lg tracking-wider">
+            Plot dose Vs Response It would return a parabola curve
+          </p>
+          <p className="text-lg tracking-wider">
+            Plot Log Dose Vs Response curve which returns a Sigmoid line
+          </p>
+        </div>
+        <div className="py-5 border-b">
+          <h2 className="text-2xl font-bold">Conclusion</h2>
+          <p className="text-lg tracking-wider">
+            Nicotinic Receptors are present in the skeletal muscle where
+            Acetylcholine produces contraction of the muscle through the
+            stimulation of nicotinic receptors.
+          </p>
+        </div>
+        <div className="py-5 border-b">
           <h3 className="text-2xl font-bold">Precautions</h3>
           <div>
-            <ol className="text-xl py-10">
+            <ol className="text-lg tracking-wider">
               <li>Ensure to accurately measure drug doses.</li>
               <li>Ensure frog rectus is properly aerated.</li>
               <li>Make sure to avoid paralax error while measuring response</li>
@@ -190,6 +227,13 @@ const DrugDoseResponse = () => {
             </ol>
           </div>
         </div>
+      </div>
+      <div className="px-20">
+        <Link to="/practicals/dose-response/record">
+          <button className="bg-lightest border rounded-lg p-3 text-lg font-bold">
+            Record Experiment
+          </button>
+        </Link>
       </div>
     </section>
   );

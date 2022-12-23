@@ -24,7 +24,7 @@ def setup_db(app, database_path=database_path):
     migrate.init_app(app, db)
     db.create_all()
 
-class CoreFields(db.Model):
+class Experiment_Structure(db.Model):
      _tablename_ = 'corefields'
      id = db.Column(db.Integer, primary_key=True)
      title = db.Column(db.String)
@@ -32,7 +32,7 @@ class CoreFields(db.Model):
      theory = db.Column(db.String)
      procedure = db.Column(db.String)
      apparatus = db.Column(db.String)
-     result_presentation = db.relationship('Records', backref='CoreFields', lazy='joined', cascade='delete')
+     result_presentation = db.Column(db.Array)
      result_discussion = db.Column(db.String)
      conclusion = db.Column(db.String)
      precautions = db.Column(db.String)
@@ -73,38 +73,22 @@ class CoreFields(db.Model):
             'conclusion': self.conclusion,
             'precautions': self.precautions
             }
-class Records(db.Model):
-     _tablename_ = 'records' 
-     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
-     practical_id = db.Column(db.ForeignKey('CoreFields.id'), primary_key=True)
-     drug_name = db.Column(db.String)
-     drug_dose = db.Column(db.Integer)
-     drug_concentration = db.Column(db.Integer)
-     drug_log_dose = db.Column(db.Integer)
 
-     def __init__(self,practical_id,drug_name,drug_dose,drug_concentration, drug_log_dose):
-         self.practical_id = practical_id,
-         self.drug_name = drug_name,
-         self.drug_dose = drug_dose,
-         self.drug_concentration = drug_concentration,
-         self.drug_log_dose = drug_log_dose
-         
-     def insert(self):
-        db.session.add(self)
-        db.session.commit()
 
-     def update(self):
-        db.session.commit()
+class Experiment(db.Model):
+   _tablename_ = "experiment"
+   id = db.Column(db.Integer, primary_key=True)
+   title = db.Column(db.String)
+   aim = db.Column(db.String)
+   theory = db.Column(db.String)
+   procedure = db.Column(db.String)
+   apparatus = db.Column(db.String)
+   result_presentation = db.Column(db.Array)
+   result_discussion = db.Column(db.String)
+   conclusion = db.Column(db.String)
+   precautions = db.Column(db.String)
 
-     def delete(self):
-        db.session.delete(self)
-        db.session.commit()
-
-     def format(self):
-        return{
-           'practical_id': self.practical_id,
-           'drug_name': self.drug_name,
-           'drug_dose': self.drug_dose,
-           'drug_concentration': self.drug_concentration,
-           'drug_log_dose': self.drug_concentration
-        }    
+class TableFields(db.Model):
+   _tablename_ = "tablefields" 
+   id = db.column(db.Integer, primary_key=True)
+   experiment = db.Relationship()  

@@ -1,7 +1,6 @@
 import "../index.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAnglesRight } from "@fortawesome/free-solid-svg-icons";
-import { Link } from "react-router-dom";
 import { useForm, ValidationError } from "@formspree/react";
 import LoginButton from "./LoginButton";
 const Home = () => {
