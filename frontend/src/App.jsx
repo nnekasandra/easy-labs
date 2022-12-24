@@ -4,6 +4,8 @@ import Header from "./components/Header";
 import Home from "./components/Home";
 import Auth0ProviderWithHistory from "./auth/Auth0ProviderWithHistory";
 import PageNotFound from "./pages/PageNotFound";
+import GetStarted from "./components/GetStarted";
+import Welcome from "./pages/Welcome";
 import PracticalsLandingPage from "./pages/PracticalsLandingPage";
 import ProtectedRoute from "./components/ProtectedRoute";
 import DrugDoseResponse from "./pages/DrugDoseResponse";
@@ -15,7 +17,8 @@ const App = () => {
         <Header />
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="welcome" element="you must be an admin" />
+          <Route path="welcome" element={<Welcome/>} />
+          <Route path= "get-started" element={<GetStarted/>}/>
           <Route element={<ProtectedRoute />}>
             <Route path="admin" element="you must be an admin" />
             <Route path="/practicals">

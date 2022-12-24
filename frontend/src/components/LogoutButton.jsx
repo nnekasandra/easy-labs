@@ -11,7 +11,7 @@ import React from "react";
   };
 
   return (
-    <button className="button__logout" onClick={handleLogout}>
+    <button className="border bg-main-blue rounded-lg p-3 text-white font-bold" onClick={handleLogout}>
       Log Out
     </button>
   );
