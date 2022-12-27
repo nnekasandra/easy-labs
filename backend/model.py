@@ -32,11 +32,12 @@ class ExperimentStructure(db.Model):
     theory = db.Column(db.String)
     procedure = db.Column(db.String)
     apparatus = db.Column(db.String)
-    result_presentation = db.relationship('PracticalData', backref="experiment_structure")
+    result_presentation = db.relationship('Fields', backref="experiment_structure")
     result_discussion = db.Column(db.String)
     conclusion = db.Column(db.String)
     precautions = db.Column(db.String)
     experiment = db.relationship('Experiment', backref='experiment_structure')
+
 
     def __repr__(self):
         return f'<ExperimentStructure "{self.title}">'
@@ -46,20 +47,30 @@ class Experiment(db.Model):
     _tablename_ = 'experiment'
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String)
-    experiment_id = db.Column(db.Integer, db.ForeignKey('experiment_structure.id'))
-    record_values = db.Column(db.relationsip('Values', backref='experiment'))
+    aim = db.Column(db.String)
+    theory = db.Column(db.String)
+    procedure = db.Column(db.String)
+    apparatus = db.Column(db.String)
+    result_discussion = db.Column(db.String)
+    conclusion = db.Column(db.String)
+    precautions = db.Column(db.String)
+    experiment_strucure_id = db.Column(db.ForeignKey('experiment_structure.id'))
+    result_presentation = db.Column(db.relationship('Values', backref='experiment'))
+
+
     def __repr__(self):
         return f'<Experiment "{self.title}">'
 
-class PracticalData(db.Model):
-    _tablename_ = 'practical_data'
+class Fields(db.Model):
+    _tablename_ = 'fields'
     id = db.Column(db.Integer, primary_key=True)
-    heading = db.Column(db.relationship('practical_data', backref='values'))
-    field_record = db.Column(db.relationship(db.integer, db.ForeignKey('experiment_structure.result_presentation')))
+    field_name = db.Column(db.String)
+    field_value = db.Column(db.relationship('Values', backref='fields'))
+    experiment_structure_id = db.Column(db.relationship(db.ForeignKey('experiment_structure.id')))
 
 class Values(db.Model):
     _tablename_ = 'values'
     id = db.Column(db.Integer, primary_key=True)
-    field = db.Column(db.ForeignKey('practical_data.heading'))
-    value = db.Column(db.Float)
+    field_id = db.Column(db.ForeignKey('fields.id'))
+    value = db.Column(db.Integer)
     experiment_id = db.Column(db.ForeignKey('experiment.id'))
