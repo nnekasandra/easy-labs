@@ -9,8 +9,10 @@ virtualenv
 .vscode
 __pycache__/
 __pycache__
+/__pycache__
 projectvenv
 projectvenv/
+/migrations
 # testing
 /coverage
 

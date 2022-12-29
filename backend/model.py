@@ -29,14 +29,14 @@ class ExperimentStructure(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(100))
     aim = db.Column(db.String)
-    theory = db.Column(db.String)
-    procedure = db.Column(db.String)
+    theory = db.Column(db.Text)
     apparatus = db.Column(db.String)
-    result_presentation = db.relationship('Fields', backref="experiment_structure")
+    procedure = db.Column(db.Text)
+    result_fields = db.relationship("Fields", back_populates="experiment_structure_type", cascade="all, delete")
     result_discussion = db.Column(db.String)
     conclusion = db.Column(db.String)
     precautions = db.Column(db.String)
-    experiment = db.relationship('Experiment', backref='experiment_structure')
+    experiments = db.relationship('Experiment', back_populates='experiment_structure_type', cascade="all, delete")
 
 
     def __repr__(self):
@@ -48,15 +48,15 @@ class Experiment(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String)
     aim = db.Column(db.String)
-    theory = db.Column(db.String)
-    procedure = db.Column(db.String)
+    theory = db.Column(db.Text)
     apparatus = db.Column(db.String)
+    procedure = db.Column(db.Text)
     result_discussion = db.Column(db.String)
     conclusion = db.Column(db.String)
     precautions = db.Column(db.String)
-    experiment_strucure_id = db.Column(db.ForeignKey('experiment_structure.id'))
-    result_presentation = db.Column(db.relationship('Values', backref='experiment'))
-
+    experiment_strucure_id = db.Column(db.Integer, db.ForeignKey('experiment_structure.id'))
+    experiment_strucure_type = db.relationship('Experiment_Structure', back_populates='experiments')
+    experiment_result_values = db.relationship('Values', back_populates='experiment_type', cascade="all, delete")
 
     def __repr__(self):
         return f'<Experiment "{self.title}">'
@@ -65,12 +65,15 @@ class Fields(db.Model):
     _tablename_ = 'fields'
     id = db.Column(db.Integer, primary_key=True)
     field_name = db.Column(db.String)
-    field_value = db.Column(db.relationship('Values', backref='fields'))
-    experiment_structure_id = db.Column(db.relationship(db.ForeignKey('experiment_structure.id')))
+    field_values = db.relationship('Values', back_populates='field', cascade="all, delete")
+    experiment_structure_id = db.Column(db.Integer, db.ForeignKey('experiment_structure.id'))
+    experiment_structure_type = db.relationship('ExperimentStructure', back_populates='result_fields')
 
 class Values(db.Model):
     _tablename_ = 'values'
     id = db.Column(db.Integer, primary_key=True)
-    field_id = db.Column(db.ForeignKey('fields.id'))
+    field_id = db.Column(db.Integer, db.ForeignKey('fields.id'))
+    field = db.relationship('Fields', back_populates="field_values")
     value = db.Column(db.Integer)
-    experiment_id = db.Column(db.ForeignKey('experiment.id'))
+    experiment_id = db.Column(db.Integer, db.ForeignKey('experiment.id'))
+    experiment_type = db.relationship('Experiment', back_populates="experiment_result_values")
