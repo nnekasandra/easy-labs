@@ -2,6 +2,7 @@ from flask import Flask, request, abort, jsonify
 from flask_sqlalchemy import SQLAlchemy
 from flask_cors import CORS
 from model import *
+from populate import populate_db
 from flask_migrate import Migrate
 db = SQLAlchemy()
 migrate = Migrate()
@@ -11,6 +12,17 @@ def create_app(test_config=None):
     setup_db(app)
     CORS(app)
     
+    @app.cli.command("reset-db")
+    def reset_db():
+        db.drop_all()
+        db.create_all()
+        print('Database has been reset')
+
+    @app.cli.command("populate-db")
+    def populate_db_cli():
+        with app.app_context():
+            populate_db()
+
     cors = CORS(app, resources={r"/api/*": {"origins": "*"}})
     @app.after_request
     def after_request(response):

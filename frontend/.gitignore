@@ -13,6 +13,7 @@ __pycache__
 projectvenv
 projectvenv/
 migrations/
+migrations
 # testing
 /coverage
 
