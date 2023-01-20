@@ -25,7 +25,7 @@ const App = () => {
               <Route index element={<PracticalsLandingPage />} />
               <Route path="dose-response">
                 <Route index element={<DrugDoseResponse />} />
-                <Route path="record" element={<DrugDoseResponseRecord />} />
+                <Route path="record" element={<DrugDoseResponseRecord id={1}/>} />
               </Route>
             </Route>
           </Route>

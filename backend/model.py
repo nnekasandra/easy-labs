@@ -40,6 +40,7 @@ class ExperimentStructure(db.Model):
     def format(self):
         return {
             'id': self.id,
+            'title': self.title,
             'aim': self.aim,
             'theory': self.theory,
             'apparatus': self.apparatus,
@@ -79,6 +80,7 @@ class Experiment(db.Model):
     def format(self):
         return {
             'id': self.id,
+            'title':self.title,
             'aim': self.aim,
             'theory': self.theory,
             'apparatus': self.apparatus,

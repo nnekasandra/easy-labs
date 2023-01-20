@@ -1,4 +1,3 @@
-import Button from "../components/Button";
 const RecordFields = (props) => {
   return (
     <div className="grid grid-cols-2 gap-5">
@@ -6,6 +5,7 @@ const RecordFields = (props) => {
       <input
         type="text"
         className="border-2 text-lg rounded-lg block py-3 my-3"
+        value={props.value}
       />
     </div>
   );
