@@ -48,9 +48,9 @@ const DrugDoseResponseRecord = ({id}) => {
         <div className="apparatus">
           <RecordFields heading="Apparatus" value={data?.apparatus} />
         </div>
-        <div className="table">
-          <p>table</p>
-          <DynamicTable/>
+        <div className="result-table">
+          <h3 className="text-2xl font-bold mt-3">Result Presentation:</h3>
+          <DynamicTable />
         </div>
         <div className="discussion">
           <RecordFields

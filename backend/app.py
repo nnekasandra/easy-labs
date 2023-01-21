@@ -62,7 +62,11 @@ def table_data(experiment_id):
     experiment_template = ExperimentStructure.query.get_or_404(experiment_id) # columns definition
     experiment_template_table = experiment_template.data_fields
     data = [item.format() for item in experiment_template_table]
-    return jsonify(data) 
+   
+    result = [item.get("field_name") for item in data ]  
+    return jsonify({
+        'fieldnames': result
+    }) 
 
 #   if request.method =="POST":
 #     body = request.get_json()
