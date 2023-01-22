@@ -1,35 +1,59 @@
 import React, { useEffect, useState } from "react";
 import RecordFields from "../components/RecordFields";
-// import DynamicTable from "../components/DynamicTable";
-import DynamicTable from "../components/Dynamic";
+import DynamicTable from "../components/DynamicTable";
 const DrugDoseResponseRecord = ({id}) => {
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [ experimentCreated, setExperimentCreated ] = useState(false)
+  const [ experiment_id, setExperiment_id ] = useState(undefined)
+  // State for Experiment 
+
   useEffect(() => {
     const getData = async () => {
       try {
         const response = await fetch(`/experiment/${id}`);
-        console.log(response)
+        console.log(response);
         if (!response.ok) {
           throw new Error(
             `This is an HTTP error: The status is ${response.status}`
           );
         }
         const data = await response.json();
-        console.log(data);
         setData(data);
-        console.log(setData(data))
         setError(null);
-      } catch (error) {
-        setError(error.message);
-        setData(null);
-      } finally {
-        setLoading(false);
-      }
+
+        if(!experimentCreated){
+        const res = await fetch("/experiment", {
+          method: "POST",
+          headers: { "Content-type": "application/json" },
+          body: JSON.stringify(data),
+        });
+        const response_body = await res.json()
+        setExperiment_id(response_body.experiment_id)
+        setExperimentCreated(true)
+        console.log("experiment updated successfully");
+        }
+
+        } catch (error) {
+            setError(error.message);
+            setData(null);
+        } finally {
+            setLoading(false);
+        }
     };
     getData();
-  }, [id]);
+    }, [id, experimentCreated]);
+
+   const handleSubmit = async ()=>{
+      const newData = {...data}; 
+      await fetch(`/experiment/edit/${experiment_id}`, {
+          method: "PATCH",
+          headers: { "Content-type": "application/json" },
+          body: JSON.stringify(newData),
+        });
+    }
+
   return (
     <section className="p-10">
       <h1 className="text-center text-3xl">

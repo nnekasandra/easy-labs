@@ -33,11 +33,12 @@ def after_request(response):
     )
     return response
 
+
 @app.route('/', methods=['GET'] )
 def home_page():
-    return 'Hello world'
+    return 'Hello world! This is an API created by Nneka Sandra to send experiment data to the frontend'
   
-
+# Retrieves data for an experiment structure instance
 @app.route('/experiment/<int:experiment_id>')
 def experiment_template(experiment_id):
     experiment_template = ExperimentStructure.query.get_or_404(experiment_id).format()
@@ -56,7 +57,8 @@ def experiment_template(experiment_id):
         'precautions': experiment_template['precautions']
     })
 
-@app.route('/experiment-table/<int:experiment_id>', methods=['GET', 'POST'])
+# Retrieves table field data for an experiment structure instance
+@app.route('/experiment-table/<int:experiment_id>')
 def table_data(experiment_id):
   if request.method =="GET":
     experiment_template = ExperimentStructure.query.get_or_404(experiment_id) # columns definition
@@ -68,52 +70,78 @@ def table_data(experiment_id):
         'fieldnames': result
     }) 
 
-#   if request.method =="POST":
-#     body = request.get_json()
-#     new_column = body.get('column')
-#     new_row = Fields(
-#         field_name = new_column,
-#         experiment_structure_id=1
-#     )
-#     db.session.add(new_row)
-#     db.session.commit()
-#     return (jsonify({
-#         "message":"success",
-#         # 'new_field_name': new_row.field_name,
-#         # 'id': new_row.id
-#         }),201)
 
-# @app.route('/practicals', methods=['POST'])
-# def create_experiment():
-#     body = request.get_json()
-#     new_title = body.get('title')
-#     new_aim = body.get('aim')
-#     new_theory = body.get('theory')
-#     new_apparatus = body.get('apparatus')
-#     new_procedure = body.get('procedure')
-#     new_result = body.get('result_presentation')
-#     new_discussion = body.get('result_discussion')
-#     new_conclusion = body.get('conclusion')
-#     new_precaution = body.get('precaution')
+# Creates Experiment instance from experiment structure
+@app.route('/experiment', methods=['POST'])
+def create_experiment():
+    data = request.get_json()
+    new_title = data.get('title')
+    new_aim = data.get('aim')
+    new_theory = data.get('theory')
+    new_apparatus = data.get('apparatus')
+    new_procedure = data.get('procedure')
+    new_discussion = data.get('result_discussion')
+    new_conclusion = data.get('conclusion')
+    new_precaution = data.get('precaution')
+    try:
+        experiment = Experiment(
+            title = new_title,
+            aim = new_aim,
+            theory = new_theory,
+            apparatus = new_apparatus,
+            procedure = new_procedure,
+            result_discussion = new_discussion,
+            conclusion = new_conclusion,
+            precaution = new_precaution
+        )
+        db.session.add(experiment)
+        db.session.commit()
+    except Exception as e:
+      print(e)
+      return jsonify({
+          'success':False,
+          'message': 'Experiment creation failed',
+      })
+    finally:  
+    # experiment = Experiment(
+    #     title = new_title,
+    #     aim = new_aim,
+    #     theory = new_theory,
+    #     apparatus = new_apparatus,
+    #     procedure = new_procedure,
+    #     result_discussion = new_discussion,
+    #     conclusion = new_conclusion,
+    #     precaution = new_precaution
+    # )
+    # db.session.add(experiment)
+    # db.session.commit()
+        return jsonify({
+        'success':True,
+        'message': 'Experiment Successfully created',
+        'experiment_id': experiment.id,
+        'total_experiments': len(Experiment.query.all())
+    })
 
-#     practical = Experiment(
-#         title = new_title,
-#         aim = new_aim,
-#         theory = new_theory,
-#         apparatus = new_apparatus,
-#         procedure = new_procedure,
-#         result_presentation = new_result,
-#         new_discussion = new_discussion,
-#         conclusion = new_conclusion,
-#         precaution = new_precaution
-#     )
-#     db.session.add(practical)
-#     db.session.commit()
-#     return jsonify({
-#         'success':True,
-#         'experiment_id': practical.id,
-#         'total_experiments': len(Experiment.Query.all())
-#     })
+# Update an experiment
+@app.route('/experiment/edit/<int:id>', methods=['PATCH'])
+def update_experiment(id):
+    experiment = Experiment.query.get_or_404(id)
+    data = request.get_json()
+    experiment.title = data.get('title')
+    experiment.aim = data.get('aim')
+    experiment.theory = data.get('theory')
+    experiment.apparatus = data.get('apparatus')
+    experiment.procedure = data.get('procedure')
+    experiment.result_discussion = data.get('result_discussion')
+    experiment.conclusion = data.get('conclusion')
+    experiment.precaution = data.get('precaution')
+    db.session.add(experiment)
+    db.session.commit()
+    return jsonify({
+                'success':True,
+                'message': 'Experiment Successfully updated',
+                'experiment_id': experiment.id,
+})
 
 # @app.route('/practicals', methods=['GET'])
 # def get_practicals():
