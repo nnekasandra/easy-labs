@@ -5,7 +5,8 @@ from model import *
 from populate import populate_db
 from flask_migrate import Migrate
 from model import app
-
+import logging
+from logging import Formatter, FileHandler
 
 @app.cli.command("reset-db")
 def reset_db():
@@ -202,6 +203,23 @@ def forbidden(error):
         401,
     )    
     # return app
+
+def configure_logging():
+    # Logging Configuration
+    if app.config['LOG_WITH_GUNICORN']:
+        gunicorn_error_logger = logging.getLogger('gunicorn.error')
+        app.logger.handlers.extend(gunicorn_error_logger.handlers)
+        app.logger.setLevel(logging.DEBUG)
+
+    else:
+        file_handler = FileHandler('error.log')
+        file_handler.setFormatter(
+            Formatter('%(asctime)s %(levelname)s: %(message)s [in %(pathname)s:%(lineno)d]')
+        )
+        app.logger.setLevel(logging.INFO)
+        file_handler.setLevel(logging.INFO)
+        app.logger.addHandler(file_handler)
+        app.logger.info('errors')
 
     
 if __name__ == "__main__":
