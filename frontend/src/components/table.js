@@ -94,9 +94,8 @@ const data = [
 
 function Table() {
   return (
-    <div className="table py-10" style={{'overflow-x': 'auto'}}>
+    <div className="table py-10" style={{'overflowX': 'auto'}}>
       <table>
-        <thead>
           <tr>
             <th>S/N</th>
             <th>Drug Name</th>
@@ -106,7 +105,6 @@ function Table() {
             <th>Response (mm)</th>
             <th>Response %</th>
           </tr>
-        </thead>
         {data.map((val, key) => {
           return (
             <tr key={key}>

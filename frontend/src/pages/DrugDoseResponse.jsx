@@ -115,9 +115,8 @@ const DrugDoseResponse = () => {
               height="400"
               src="https://www.youtube.com/embed/4jUw6mkYoTU"
               title="YouTube video player"
-              frameborder="0"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowfullscreen
+              allowFullScreen
             ></iframe>
             <p className="text-2xl py-5">
               Video Representation on how to set up an Organ Bath

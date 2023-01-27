@@ -13,9 +13,10 @@ database_user = os.getenv('TRIVIA_DB_USER', 'postgres')
 database_path = "postgresql://{}:{}@{}/{}".format(
     database_user, database_password, database_host, database_name
 )
-
-SQLALCHEMY_DATABASE_URI = database_path
 SQLALCHEMY_TRACK_MODIFICATIONS = False
 
-
+if os.getenv('DATABASE_URL'):
+    SQLALCHEMY_DATABASE_URI = os.getenv('DATABASE_URL')
+else:
+    SQLALCHEMY_DATABASE_URI = database_path
 
