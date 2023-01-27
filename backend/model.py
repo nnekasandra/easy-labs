@@ -1,14 +1,4 @@
-from flask_migrate import Migrate
-from flask_sqlalchemy import SQLAlchemy
-from flask import Flask
-
-
-#configure application
-app = Flask(__name__)
-app.config.from_object('config')
-db = SQLAlchemy(app)
-migrate = Migrate(app, db)
-
+from database import db
 
 class ExperimentStructure(db.Model):
     __tablename__ = 'experiment_structure'
@@ -127,3 +117,6 @@ class Values(db.Model):
             'value': self.value,
             'experiment_id': self.experiment_id,
         }
+# app = Flask(__name__)
+# app.config.from_object('config')
+

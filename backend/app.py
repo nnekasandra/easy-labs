@@ -1,12 +1,15 @@
 from flask import Flask, request, abort, jsonify
-from flask_sqlalchemy import SQLAlchemy
 from flask_cors import CORS
-from model import *
 from populate import populate_db
-from flask_migrate import Migrate
-from model import app
+from model import *
 import logging
 from logging import Formatter, FileHandler
+from database import init_db,db
+
+#configure application
+app = Flask(__name__)
+app.config.from_object('config')
+init_db(app)
 
 @app.cli.command("reset-db")
 def reset_db():
