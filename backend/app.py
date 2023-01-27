@@ -22,6 +22,13 @@ def populate_db_cli():
     with app.app_context():
         populate_db()
 
+
+#populate the database incase it has not yet being populated
+
+with app.app_context():
+    if not ExperimentStructure.query.first():
+        populate_db()
+
 CORS(app)
 cors = CORS(app, resources={r"/api/*": {"origins": "*"}})
 @app.after_request
@@ -41,7 +48,7 @@ def after_request(response):
 @app.route('/', methods=['GET'] )
 def home_page():
     return 'Hello world! This is an API created by Nneka Sandra to send experiment data to the frontend'
-  
+   
 # Retrieves data for an experiment structure instance
 @app.route('/experiment/<int:experiment_id>')
 def experiment_template(experiment_id):

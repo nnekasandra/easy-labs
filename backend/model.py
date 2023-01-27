@@ -57,7 +57,7 @@ class Experiment(db.Model):
     def __repr__(self):
         return f'<Experiment "{self.title}">'
 
-    def __init__(self, title, aim, theory, apparatus, procedure, result_discussion,conclusion, precautions):
+    def __init__(self, title, aim, theory, apparatus, procedure, result_discussion,conclusion, precautions, experiment_structure_id):
         self.title = title
         self.aim = aim
         self.theory = theory
@@ -66,6 +66,7 @@ class Experiment(db.Model):
         self.result_discussion = result_discussion
         self.conclusion = conclusion
         self.precautions = precautions
+        self.experiment_structure_id = experiment_structure_id
 
     def format(self):
         return {
@@ -117,6 +118,3 @@ class Values(db.Model):
             'value': self.value,
             'experiment_id': self.experiment_id,
         }
-# app = Flask(__name__)
-# app.config.from_object('config')
-
