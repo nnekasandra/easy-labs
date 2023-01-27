@@ -7,13 +7,12 @@ const DrugDoseResponseRecord = ({id}) => {
   const [error, setError] = useState(null);
   const [ experimentCreated, setExperimentCreated ] = useState(false)
   const [ experiment_id, setExperiment_id ] = useState(undefined)
-  // State for Experiment 
-
+  const baseUrl = process.env.REACT_APP_API_BASE_URL;
   useEffect(() => {
     const getData = async () => {
       try {
-        const response = await fetch(`/experiment/${id}`);
-        console.log(response);
+        const response = await fetch(`${baseUrl}/experiment/${id}`);
+
         if (!response.ok) {
           throw new Error(
             `This is an HTTP error: The status is ${response.status}`
@@ -23,31 +22,30 @@ const DrugDoseResponseRecord = ({id}) => {
         setData(data);
         setError(null);
 
-        if(!experimentCreated){
-        const res = await fetch("/experiment", {
-          method: "POST",
-          headers: { "Content-type": "application/json" },
-          body: JSON.stringify(data),
-        });
-        const response_body = await res.json()
-        setExperiment_id(response_body.experiment_id)
-        setExperimentCreated(true)
-        console.log("experiment updated successfully");
+        if (!experimentCreated) {
+          const res = await fetch(`${baseUrl}/experiment`, {
+            method: "POST",
+            headers: { "Content-type": "application/json" },
+            body: JSON.stringify(data),
+          });
+          const response_body = await res.json();
+          setExperiment_id(response_body.experiment_id);
+          setExperimentCreated(true);
+          console.log("experiment updated successfully");
         }
-
-        } catch (error) {
-            setError(error.message);
-            setData(null);
-        } finally {
-            setLoading(false);
-        }
+      } catch (error) {
+        setError(error.message);
+        setData(null);
+      } finally {
+        setLoading(false);
+      }
     };
     getData();
-    }, [id, experimentCreated]);
+  }, [id, experimentCreated, baseUrl]);
 
    const handleSubmit = async ()=>{
       const newData = {...data}; 
-      await fetch(`/experiment/edit/${experiment_id}`, {
+      await fetch(`${baseUrl}/experiment/edit/${experiment_id}`, {
           method: "PATCH",
           headers: { "Content-type": "application/json" },
           body: JSON.stringify(newData),

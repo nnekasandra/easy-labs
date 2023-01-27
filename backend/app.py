@@ -40,7 +40,7 @@ def after_request(response):
         "Access-Control-Allow-Methods", "GET, POST, PATCH, DELETE, OPTION"
     )
     response.headers.add(
-        "Access-Control-Allow-Origin", "*"
+        "Access-Control-Allow-Origin", "http://127.0.0.1:3000", "*"
     )
     return response
 
