@@ -33,19 +33,13 @@ CORS(app)
 cors = CORS(app, resources={r"/api/*": {"origins": "*"}})
 @app.after_request
 def after_request(response):
-    response.headers.add(
-        "Access-Control-Allow-Headers", "Content-Type, Authorization"
-    )
-    response.headers.add(
-        "Access-Control-Allow-Methods", "GET, POST, PATCH, DELETE, OPTION"
-    )
-    response.headers.add(
-        "Access-Control-Allow-Origin", "http://127.0.0.1:3000", "*"
-    )
+    response.headers["Access-Control-Allow-Headers"] = "Content-Type,Authorization"
+    response.headers["Access-Control-Allow-Methods"] = "GET, POST, PATCH, DELETE, OPTION"
+    response.headers["Access-Control-Allow-Origin"] = "*"
     return response
 
 
-@app.route('/', methods=['GET'] )
+@app.route('/' )
 def home_page():
     return 'Hello world! This is an API created by Nneka Sandra to send experiment data to the frontend'
    

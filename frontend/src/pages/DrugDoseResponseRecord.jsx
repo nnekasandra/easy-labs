@@ -7,11 +7,11 @@ const DrugDoseResponseRecord = ({id}) => {
   const [error, setError] = useState(null);
   const [ experimentCreated, setExperimentCreated ] = useState(false)
   const [ experiment_id, setExperiment_id ] = useState(undefined)
-  const baseUrl = process.env.REACT_APP_API_BASE_URL;
+  // const baseUrl = process.env.REACT_APP_API_BASE_URL;
   useEffect(() => {
     const getData = async () => {
       try {
-        const response = await fetch(`${baseUrl}/experiment/${id}`);
+        const response = await fetch(`/experiment/${id}`);
 
         if (!response.ok) {
           throw new Error(
@@ -23,7 +23,7 @@ const DrugDoseResponseRecord = ({id}) => {
         setError(null);
 
         if (!experimentCreated) {
-          const res = await fetch(`${baseUrl}/experiment`, {
+          const res = await fetch(`/experiment`, {
             method: "POST",
             headers: { "Content-type": "application/json" },
             body: JSON.stringify(data),
@@ -41,11 +41,11 @@ const DrugDoseResponseRecord = ({id}) => {
       }
     };
     getData();
-  }, [id, experimentCreated, baseUrl]);
+  }, [id, experimentCreated]);
 
    const handleSubmit = async ()=>{
       const newData = {...data}; 
-      await fetch(`${baseUrl}/experiment/edit/${experiment_id}`, {
+      await fetch(`/experiment/edit/${experiment_id}`, {
           method: "PATCH",
           headers: { "Content-type": "application/json" },
           body: JSON.stringify(newData),
