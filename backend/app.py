@@ -10,6 +10,7 @@ from database import init_db,db
 app = Flask(__name__)
 app.config.from_object('config')
 init_db(app)
+CORS(app)
 
 @app.cli.command("reset-db")
 def reset_db():
@@ -24,20 +25,9 @@ def populate_db_cli():
 
 
 #populate the database incase it has not yet being populated
-
 with app.app_context():
     if not ExperimentStructure.query.first():
         populate_db()
-
-CORS(app)
-cors = CORS(app, resources={r"/api/*": {"origins": "*"}})
-@app.after_request
-def after_request(response):
-    response.headers["Access-Control-Allow-Headers"] = "Content-Type,Authorization"
-    response.headers["Access-Control-Allow-Methods"] = "GET, POST, PATCH, DELETE, OPTION"
-    response.headers["Access-Control-Allow-Origin"] = "*"
-    return response
-
 
 @app.route('/' )
 def home_page():
