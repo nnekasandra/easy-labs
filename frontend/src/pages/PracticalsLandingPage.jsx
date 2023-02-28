@@ -21,8 +21,8 @@ const PracticalsLandingPage = () =>{
               className="border-2 w-full p-3 text-sm rounded-lg"
             />
             <div className="grid md:grid-cols-2 py-10 gap-5">
-              <Link to={"/practicals/dose-response"}><Button field="Dose Response in Acetycholine"/></Link>
-              <Link to={"/practicals/2"}><Button field="Practical2"/></Link>
+              <Link to={"/experiments/:id"}><Button field="Dose Response in Acetycholine"/></Link>
+              <Link to={"/experiments/:id"}><Button field="Practical2"/></Link>
             </div>
           </div>
         </div>

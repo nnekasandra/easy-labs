@@ -10,6 +10,7 @@ import PracticalsLandingPage from "./pages/PracticalsLandingPage";
 import ProtectedRoute from "./components/ProtectedRoute";
 import DrugDoseResponse from "./pages/DrugDoseResponse";
 import DrugDoseResponseRecord from "./pages/DrugDoseResponseRecord";
+import RecordTemplate from "./components/RecordTemplate";
 const App = () => { 
   return (
     <BrowserRouter>
@@ -21,11 +22,12 @@ const App = () => {
           <Route path= "get-started" element={<GetStarted/>}/>
           <Route element={<ProtectedRoute />}>
             <Route path="admin" element="you must be an admin" />
-            <Route path="/practicals">
+            <Route path="/experiments">
               <Route index element={<PracticalsLandingPage />} />
-              <Route path="dose-response">
+              <Route path=":id">
                 <Route index element={<DrugDoseResponse />} />
-                <Route path="record" element={<DrugDoseResponseRecord id={1}/>} />
+                <Route path="create" element={<DrugDoseResponseRecord/>} />
+                <Route path="record" element={<RecordTemplate/>} />
               </Route>
             </Route>
           </Route>

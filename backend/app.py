@@ -78,39 +78,19 @@ def create_experiment():
     new_discussion = data.get('result_discussion')
     new_conclusion = data.get('conclusion')
     new_precaution = data.get('precaution')
-    try:
-        experiment = Experiment(
-            title = new_title,
-            aim = new_aim,
-            theory = new_theory,
-            apparatus = new_apparatus,
-            procedure = new_procedure,
-            result_discussion = new_discussion,
-            conclusion = new_conclusion,
-            precaution = new_precaution
-        )
-        db.session.add(experiment)
-        db.session.commit()
-    except Exception as e:
-      print(e)
-      return jsonify({
-          'success':False,
-          'message': 'Experiment creation failed',
-      })
-    finally:  
-    # experiment = Experiment(
-    #     title = new_title,
-    #     aim = new_aim,
-    #     theory = new_theory,
-    #     apparatus = new_apparatus,
-    #     procedure = new_procedure,
-    #     result_discussion = new_discussion,
-    #     conclusion = new_conclusion,
-    #     precaution = new_precaution
-    # )
-    # db.session.add(experiment)
-    # db.session.commit()
-        return jsonify({
+    experiment = Experiment(
+        title = new_title,
+        aim = new_aim,
+        theory = new_theory,
+        apparatus = new_apparatus,
+        procedure = new_procedure,
+        result_discussion = new_discussion,
+        conclusion = new_conclusion,
+        precaution = new_precaution
+    )
+    db.session.add(experiment)
+    db.session.commit()
+    return jsonify({
         'success':True,
         'message': 'Experiment Successfully created',
         'experiment_id': experiment.id,
@@ -136,17 +116,20 @@ def update_experiment(id):
                 'success':True,
                 'message': 'Experiment Successfully updated',
                 'experiment_id': experiment.id,
-})
+    })
 
-# @app.route('/practicals', methods=['GET'])
-# def get_practicals():
-#     experiments = Experiment.query.all()
-#     if len(experiments) == 0:
-#         abort(404)
-#     return jsonify({
-#         'success': True,
-#         'total_experiments': len(Experiment.query.all())
-#     })  
+@app.route('/experiments', methods=['GET'])
+def get_experiments():
+    titles = db.session.query(ExperimentStructure.title).all()
+    titles_list = [title[0] for title in titles]
+    print(titles)
+    if len(titles) == 0:
+        abort(404)
+    return jsonify({
+        'success': True,
+        'experiment_title': titles_list,
+        'total_experiments': len(Experiment.query.all())
+    })  
 
 # @app.route('/experiments/search', methods=['POST'])
 # def search_experiments():

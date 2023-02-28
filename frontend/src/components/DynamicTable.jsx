@@ -3,9 +3,10 @@ import { useState, useEffect } from "react";
 const DynamicTable = () => {
   const [columns, setColumns] = useState([]);
   const [rows, setRows] = useState([]);
+  const baseUrl = process.env.REACT_APP_API_BASE_URL;
 
   const fetchColumns = async () => {
-    const response = await fetch("/experiment-table/1");
+    const response = await fetch("${baseURL}/experiment-table/1");
     const data = await response.json();
     console.log(data);
     setColumns(data.fieldnames);

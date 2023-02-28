@@ -12,7 +12,7 @@ const DrugDoseResponse = () => {
         click below{" "}
       </p>
       <div>
-        <Link to="/practicals/dose-response/record">
+        <Link to="/experiments/1/create">
           <button className="bg-lightest border rounded-lg p-3 text-lg font-bold">
             Record Experiment
           </button>

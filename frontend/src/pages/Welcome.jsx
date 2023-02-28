@@ -11,7 +11,7 @@ const Welcome = () => {
         Your One Straight Forward Process of Analysing Experiment Results
       </p>
       <div>
-        <Link to={"/practicals"} target={"_blank"} rel="noopener noreferrer">
+        <Link to={"/experiments"} target={"_blank"} rel="noopener noreferrer">
           <Button field="Go to Practicals" />
         </Link>
       </div>
