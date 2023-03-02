@@ -27,7 +27,7 @@ def populate_db_cli():
 #populate the database incase it has not yet being populated
 with app.app_context():
     if not ExperimentStructure.query.first():
-        populate_db()
+        populate_db()   
 
 @app.route('/' )
 def home_page():
@@ -52,6 +52,26 @@ def experiment_template(experiment_id):
         'precautions': experiment_template['precautions']
     })
 
+# Retrieves experiment created based on an experiment structure instance 
+@app.route('/experiment-type/<int:experiment_id>')
+def main_experiment(experiment_id):
+    main_experiment = ExperimentStructure.query.get_or_404(experiment_id).format()
+    if main_experiment is None:
+        abort(404)
+    return jsonify({
+        'success': True,
+        'total_experiments': len(ExperimentStructure.query.all()),
+        'title': main_experiment['title'],
+        'aim': main_experiment['aim'],
+        'theory': main_experiment['theory'],
+        'apparatus': main_experiment['apparatus'],
+        'procedure': main_experiment['procedure'],
+        'result_discussion': main_experiment['result_discussion'],
+        'conclusion': main_experiment['conclusion'],
+        'precautions': main_experiment['precautions']
+    })
+
+
 # Retrieves table field data for an experiment structure instance
 @app.route('/experiment-table/<int:experiment_id>')
 def table_data(experiment_id):
@@ -64,6 +84,25 @@ def table_data(experiment_id):
     return jsonify({
         'fieldnames': result
     }) 
+@app.route('/experiment/<int:experiment_structure_id>', methods=['POST'])
+def create_experiment(experiment_structure_id):
+    data = request.get_json()
+    experiment = Experiment(
+        title=data['title'],
+        aim=data['aim'], 
+        theory=data['theory'], 
+        apparatus=data['apparatus'],
+        procedure=data['procedure'], 
+        result_discussion=data['result_discussion'],
+        conclusion=data['conclusion'], 
+        precautions=data['precautions'],
+        experiment_structure_id=experiment_structure_id)
+    db.session.add(experiment)
+    db.session.commit()
+    return jsonify({
+        'success': True,
+        'experiment_id': experiment.id
+        })
 
 
 # Creates Experiment instance from experiment structure
@@ -77,7 +116,8 @@ def create_experiment():
     new_procedure = data.get('procedure')
     new_discussion = data.get('result_discussion')
     new_conclusion = data.get('conclusion')
-    new_precaution = data.get('precaution')
+    new_precautions = data.get('precautions')
+    new_experiment_structure_id = data.get('experiment_structure_id')
     experiment = Experiment(
         title = new_title,
         aim = new_aim,
@@ -86,7 +126,8 @@ def create_experiment():
         procedure = new_procedure,
         result_discussion = new_discussion,
         conclusion = new_conclusion,
-        precaution = new_precaution
+        precautions = new_precautions,
+        experiment_structure_id = new_experiment_structure_id
     )
     db.session.add(experiment)
     db.session.commit()
@@ -94,7 +135,8 @@ def create_experiment():
         'success':True,
         'message': 'Experiment Successfully created',
         'experiment_id': experiment.id,
-        'total_experiments': len(Experiment.query.all())
+        'total_experiments': len(Experiment.query.all()),
+        'experiment_format': experiment.format()
     })
 
 # Update an experiment
@@ -109,7 +151,7 @@ def update_experiment(id):
     experiment.procedure = data.get('procedure')
     experiment.result_discussion = data.get('result_discussion')
     experiment.conclusion = data.get('conclusion')
-    experiment.precaution = data.get('precaution')
+    experiment.precautions = data.get('precautions')
     db.session.add(experiment)
     db.session.commit()
     return jsonify({

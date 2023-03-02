@@ -12,7 +12,7 @@ const RecordTemplate = () =>{
     useEffect(() => {
       const getData = async () => {
         try {
-          const response = await fetch(`${baseUrl}/experiment/${id}`);
+          const response = await fetch(`${baseUrl}/experiment-type/${id}`);
           if (!response.ok) {
             throw new Error(
               `This is an HTTP error: The status is ${response.status}`
@@ -67,4 +67,4 @@ const RecordTemplate = () =>{
     </section>
     );
 }
-export default RecordTemplate
+export default RecordTemplate 
