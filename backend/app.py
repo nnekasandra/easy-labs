@@ -18,16 +18,15 @@ def reset_db():
     db.create_all()
     print('Database has been reset')
 
-@app.cli.command("populate-db")
-def populate_db_cli():
-    with app.app_context():
-        populate_db()
-
-
 #populate the database incase it has not yet being populated
 with app.app_context():
     if not ExperimentStructure.query.first():
         populate_db()   
+
+@app.cli.command("populate-db")
+def populate_db_cli():
+    with app.app_context():
+        populate_db()
 
 @app.route('/' )
 def home_page():
@@ -84,25 +83,34 @@ def table_data(experiment_id):
     return jsonify({
         'fieldnames': result
     }) 
+
 @app.route('/experiment/<int:experiment_structure_id>', methods=['POST'])
-def create_experiment(experiment_structure_id):
+def create_experiment_by_id(experiment_structure_id):
     data = request.get_json()
-    experiment = Experiment(
-        title=data['title'],
-        aim=data['aim'], 
-        theory=data['theory'], 
-        apparatus=data['apparatus'],
-        procedure=data['procedure'], 
-        result_discussion=data['result_discussion'],
-        conclusion=data['conclusion'], 
-        precautions=data['precautions'],
-        experiment_structure_id=experiment_structure_id)
-    db.session.add(experiment)
-    db.session.commit()
-    return jsonify({
-        'success': True,
-        'experiment_id': experiment.id
-        })
+    required_keys = ['title', 'aim', 'theory', 'apparatus', 'procedure', 'result_discussion', 'conclusion', 'precautions']
+    
+    if all(key in data for key in required_keys):
+        experiment = Experiment(
+            title=data['title'],
+            aim=data['aim'], 
+            theory=data['theory'], 
+            apparatus=data['apparatus'],
+            procedure=data['procedure'], 
+            result_discussion=data['result_discussion'],
+            conclusion=data['conclusion'], 
+            precautions=data['precautions'],
+            experiment_structure_id=experiment_structure_id)
+        db.session.add(experiment)
+        db.session.commit()
+        return jsonify({
+            'success': True,
+            'experiment_id': experiment.id
+            })
+    else:
+        return jsonify({
+            'success': False,
+            'message': 'Missing required fields'
+            }), 400
 
 
 # Creates Experiment instance from experiment structure

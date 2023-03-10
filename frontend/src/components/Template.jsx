@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import RecordFields from "./RecordFields";
 const Template = () => {
@@ -10,18 +10,50 @@ const Template = () => {
   const baseUrl = process.env.REACT_APP_API_BASE_URL;
   const navigate = useNavigate();
 
-  function handleClick(experimentStructureId, experimentData) {
+  const titleRef = useRef();
+  const aimRef = useRef();
+  const theoryRef = useRef();
+  const apparatusRef = useRef();
+  const discussionRef = useRef();
+  const conclusionRef = useRef();
+  const precautionRef = useRef();
+
+  const handleClick = () => {
+     if (!id) {
+       console.error("Error: Experiment ID is undefined");
+       return;
+     }
     const data = {
       experiment_structure_id: id,
+      title: titleRef.current.value,
+      aim: aimRef.current.value,
+      theory: theoryRef.current.value,
+      apparatus: apparatusRef.current.value,
+      discussion: discussionRef.current.value,
+      conclusion: conclusionRef.current.value,
+      precaution: precautionRef.current.value,
     };
-    return fetch(`/experiment/${experimentStructureId}`, {
+  
+    return fetch(`/experiment/${data["experiment_structure_id"]}`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(experimentData),
-    }).then((response) => response.json());
-  }
+      body: JSON.stringify(data),
+    })
+      .then((res) => res.json())
+      .then((response) => {
+        setError(null);
+        setData(response);
+        navigate(`/experiments/${response.experiment_id}/record`);
+        console.log(
+          `Experiment successfully created at id ${response.experiment_id}`
+        );
+      })
+      .catch((err) => {
+        console.error("Error:", err);
+      });
+  };
 
   useEffect(() => {
     const getData = async () => {
@@ -51,28 +83,41 @@ const Template = () => {
       </h1>
       <div className="recordings">
         <div className="title">
-          <RecordFields heading="Title" value={data?.title} />
+          <RecordFields ref={titleRef} heading="Title" value={data?.title} />
         </div>
         <div className="aim">
-          <RecordFields heading="Aim" value={data?.aim} />
+          <RecordFields ref={aimRef} heading="Aim" value={data?.aim} />
         </div>
         <div className="theory">
-          <RecordFields heading="Theory" value={data?.theory} />
+          <RecordFields ref={theoryRef} heading="Theory" value={data?.theory} />
         </div>
         <div className="apparatus">
-          <RecordFields heading="Apparatus" value={data?.apparatus} />
+          <RecordFields
+            ref={apparatusRef}
+            heading="Apparatus"
+            value={data?.apparatus}
+          />
         </div>
         <div className="discussion">
           <RecordFields
+            ref={discussionRef}
             heading="Record Discussion"
             value={data?.result_discussion}
           />
         </div>
         <div className="conclusion">
-          <RecordFields heading="Conclusion" value={data?.conclusion} />
+          <RecordFields
+            ref={conclusionRef}
+            heading="Conclusion"
+            value={data?.conclusion}
+          />
         </div>
         <div className="precaution">
-          <RecordFields heading="precaution" value={data?.precautions} />
+          <RecordFields
+            ref={precautionRef}
+            heading="precaution"
+            value={data?.precautions}
+          />
         </div>
         <div className="addfield my-5 w-28 h-14 bg-light-blue p-3 text-xl border-0 rounded-sm hover:bg-blue hover:text-white transition">
           <button onClick={handleClick}>CREATE</button>
@@ -82,43 +127,3 @@ const Template = () => {
   );
 };
 export default Template;
-
-function handleClick() {
-  const data = {
-    experiment_structure_id: id,
-  };
-  fetch(`${baseUrl}/experiment-type/${id}`, { method: "GET" })
-    .then((res) => res.json())
-    .then((response) => {
-      if (response.experiment_id == id) {
-        // The experiment with the specified id already exists in the database
-        console.log(response.experiment_id);
-        setError(`Experiment with id ${id} already exists`);
-      } else {
-        // The experiment with the specified id doesn't exist in the database, so create it
-        return fetch(`${baseUrl}/experiment`, {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(data),
-        })
-          .then((res) => res.json())
-          .then((response) => {
-            setError(null);
-            setData(response);
-            navigate(`/experiments/${response.experiment_id}/record`);
-            console.log(
-              `Experiment successfully created at id ${response.experiment_id}`
-            );
-            setExperimentCreated(true);
-          })
-          .catch((err) => {
-            console.error("Error:", err);
-          });
-      }
-    })
-    .catch((err) => {
-      console.error("Error:", err);
-    });
-}
